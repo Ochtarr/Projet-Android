@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TDActivity</string>
+    <string name="start_activity_for_result">Start Activity For Result (EXO 6)</string>
+    <string name="launchCallActivity">Launch Call Activity (EXO 5)</string>
+    <string name="launchDialogActivity">Launch Dialog Activity (EXO 7)</string>
+    <string name="ok">OK</string>
+    <string name="title_activity_toto">TotoActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

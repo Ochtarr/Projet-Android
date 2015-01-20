@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/my_input"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <!-- Button avec un ID dont on définira par code un listener pour gérer le click -->
+    <Button
+        android:id="@+id/my_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ok" />
+
+</LinearLayout>
