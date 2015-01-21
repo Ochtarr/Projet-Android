@@ -18,12 +18,12 @@ public class Promotion {
     public double getGlobalAverage(){
         if(listSubjects != null){
             double sum = 0;
-            int sumCoeff = 0;
+            int sumCoefficient = 0;
             for (Subject subject : listSubjects){
                 sum += subject.getAverage();
-                sumCoeff += subject.getCoeff();
+                sumCoefficient += subject.getCoefficient();
             }
-            return sum / sumCoeff;
+            return sum / sumCoefficient;
         }
         else return 0;
     }

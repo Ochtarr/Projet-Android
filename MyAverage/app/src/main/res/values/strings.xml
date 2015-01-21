@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">MyAverage</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="mainActivity_appTitle">Look at my Average!</string>
+    <string name="mainActivity_average"></string>
+    <string name="mainActivity_addSubject">Add</string>
     <string name="action_settings">Settings</string>
 
 </resources>

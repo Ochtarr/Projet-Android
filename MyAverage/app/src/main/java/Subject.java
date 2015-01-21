@@ -6,29 +6,29 @@ import java.util.ArrayList;
 public class Subject {
     private String name;
     private ArrayList<Double> listMarks;
-    private int coeff;
+    private float coefficient;
 
-    public Subject(String _name, int _coeff){
+    public Subject(String _name, float _coefficient){
         name = _name;
-        coeff = _coeff;
+        coefficient = _coefficient;
     }
 
     public void setMark(double mark){
         listMarks.add(mark);
     }
 
-    public int getCoeff(){
-        return coeff;
+    public float getCoefficient(){
+        return coefficient;
     }
 
     public double getAverage(){
         if (!listMarks.isEmpty()){
-            double sum = 0;
+            double sum = 0.0;
             for (double mark : listMarks){
                 sum += mark;
             }
             return sum / listMarks.size();
         }
-        else return 0;
+        else return -1.0;
     }
 }
