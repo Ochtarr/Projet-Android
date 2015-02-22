@@ -2,9 +2,6 @@ package src;
 
 import java.util.ArrayList;
 
-/**
- * Created by Dimitri on 20/01/2015.
- */
 public class Promotion {
     private String name;
     private ArrayList<Subject> listSubjects;
@@ -13,17 +10,17 @@ public class Promotion {
         name = _name;
     }
 
-    public void setSubject(Subject subject){
-        listSubjects.add(subject);
+    public void setSubject(String name){
+        listSubjects.add(new Subject(name));
     }
 
     public double getGlobalAverage(){
         if(!listSubjects.isEmpty()){
-            double sum = 0;
-            int sumCoeff = 0;
+            double sum = 0.0;
+            double sumCoeff = 0.0;
             for (Subject subject : listSubjects){
                 sum += subject.getAverage();
-                sumCoeff += subject.getCoeff();
+                sumCoeff += subject.getCoefficient();
             }
             return sum / sumCoeff;
         }

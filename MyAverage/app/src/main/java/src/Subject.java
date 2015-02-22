@@ -2,35 +2,43 @@ package src;
 
 import java.util.ArrayList;
 
-/**
- * Created by Dimitri on 20/01/2015.
- */
 public class Subject {
     private String name;
-    private ArrayList<Double> listMarks;
-    private int coeff;
+    private ArrayList<Test> listTests;
+    private double coefficient;
 
-    public Subject(String _name, int _coeff){
+    public Subject(String _name){
         name = _name;
-        coeff = _coeff;
+        coefficient = 1.0;
+    }
+
+    public Subject(String _name, double _coefficient){
+        name = _name;
+        coefficient = _coefficient;
     }
 
     public void setMark(double mark){
-        listMarks.add(mark);
+        listTests.add(new Test(mark));
     }
 
-    public int getCoeff(){
-        return coeff;
+    public void setTest(String name, String details, double mark, double coefficient){
+        listTests.add(new Test(name, details, mark, coefficient));
+    }
+
+    public double getCoefficient(){
+        return coefficient;
     }
 
     public double getAverage(){
-        if (!listMarks.isEmpty()){
+        if (!listTests.isEmpty()){
+            double sumCoeff = 0.0;
             double sum = 0;
-            for (double mark : listMarks){
-                sum += mark;
+            for (Test test : listTests){
+                sum += (test.getMark() * test.getCoefficient());
+                sumCoeff += test.getCoefficient();
             }
-            return sum / listMarks.size();
+            return sum / sumCoeff;
         }
-        else return 0;
+        else return -1.0;
     }
 }
