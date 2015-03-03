@@ -8,4 +8,11 @@
 
     <!-- GLOBAL AVERAGE SIZE -->
     <dimen name="global_average_size">40dp</dimen>
+
+    <!-- TITLES ON THE SECOND ACTIVITY-->
+    <dimen name="subject_titles">30dp</dimen>
+
+    <!-- MARKS BUTTONS SIZES ON THE SECOND ACTIVITY-->
+    <dimen name="subject_buttons_height">40dp</dimen>
+    <dimen name="subject_buttons_width">55dp</dimen>
 </resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="title_activity_main">MyAverage Promotion</string>
+    <string name="app_title">Look at my marks !</string>
+    <string name="global_average">0</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_subject">MyAverage Subject</string>
+    <string name="mysubject_title"><u>My subject</u></string>
+    <string name="mymarks_title"><u>My marks</u></string>
+
+    <string name="title_activity_test">MyAverage Test</string>
+    <string name="SubjectName"><u>SubjectName</u></string>
+
+
+</resources>
