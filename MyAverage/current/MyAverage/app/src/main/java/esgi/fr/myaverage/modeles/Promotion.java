@@ -1,8 +1,7 @@
+package esgi.fr.myaverage.modeles;
+
 import java.util.ArrayList;
 
-/**
- * Created by Dimitri on 20/01/2015.
- */
 public class Promotion {
     private String name;
     private ArrayList<Subject> listSubjects;
@@ -11,19 +10,19 @@ public class Promotion {
         name = _name;
     }
 
-    public void setSubject(Subject subject){
-        listSubjects.add(subject);
+    public void setSubject(String name){
+        listSubjects.add(new Subject(name));
     }
 
     public double getGlobalAverage(){
-        if(listSubjects != null){
-            double sum = 0;
-            int sumCoefficient = 0;
+        if(!listSubjects.isEmpty()){
+            double sum = 0.0;
+            double sumCoeff = 0.0;
             for (Subject subject : listSubjects){
                 sum += subject.getAverage();
-                sumCoefficient += subject.getCoefficient();
+                sumCoeff += subject.getCoefficient();
             }
-            return sum / sumCoefficient;
+            return sum / sumCoeff;
         }
         else return 0;
     }
