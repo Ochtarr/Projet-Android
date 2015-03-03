@@ -1,8 +1,5 @@
-package esgi.fr.myaverage.models;
+package esgi.fr.myaverage.modeles;
 
-/**
- * Controle
- */
 public class Test {
     private String name;
     private String details;
