@@ -1,7 +1,10 @@
-package esgi.fr.myaverage.modeles;
+package esgi.fr.myaverage.models;
 
 import java.util.ArrayList;
 
+/**
+ * Matiere
+ */
 public class Subject {
     private String name;
     private ArrayList<Test> listTests;

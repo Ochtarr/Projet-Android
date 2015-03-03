@@ -1,7 +1,10 @@
-package esgi.fr.myaverage.modeles;
+package esgi.fr.myaverage.models;
 
 import java.util.ArrayList;
 
+/**
+ * Classe
+ */
 public class Promotion {
     private String name;
     private ArrayList<Subject> listSubjects;
