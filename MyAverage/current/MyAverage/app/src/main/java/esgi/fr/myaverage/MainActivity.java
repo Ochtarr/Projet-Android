@@ -152,7 +152,10 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(MainActivity.this,SubjectActivity.class);
 				i.putExtra(SUBJECT, "NONE");
-				i.putExtra(ID_SUBJECT,new String(""+(myPromo.getListSubjects().get(nb_subjects-1).getId()+3)));
+				if(myPromo.getListSubjects().isEmpty())
+					i.putExtra(ID_SUBJECT,new String(""+1));
+				else
+					i.putExtra(ID_SUBJECT,new String(""+(myPromo.getListSubjects().get(nb_subjects-1).getId()+3)));
 				startActivity(i);
 				
 			}
