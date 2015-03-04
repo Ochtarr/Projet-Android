@@ -83,7 +83,7 @@ public class SubjectActivity extends Activity {
 		
 		TextView average=(TextView) findViewById(R.id.textViewSubjectAverage);
         average.setText(intent.getStringExtra("AVERAGE_SUBJECT"));
-		// Si l'utilisateur a cliqué sur une matiere on charge les notes
+		// Si l'utilisateur a cliquï¿½ sur une matiere on charge les notes
 		if (!subject.equals("NONE")) {
 			EditText title_tf = (EditText) findViewById(R.id.subjectName);
 	        EditText coef_tf = (EditText) findViewById(R.id.subjectCoefficient);
@@ -97,7 +97,7 @@ public class SubjectActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// Supprimer la matère
+				// Supprimer la matï¿½re
 				Context newContext = SubjectActivity.this;
 				MyAverageDbHelper mDbHelper = new MyAverageDbHelper(newContext);
 				SQLiteDatabase db = mDbHelper.getWritableDatabase();
@@ -109,7 +109,7 @@ public class SubjectActivity extends Activity {
 				// Issue SQL statement.
 				db.delete(MyAverageDB.TABLE_SUBJECTS, selection, selectionArgs);
 				
-				// Renvoie à l'ecran principal
+				// Renvoie ï¿½ l'ecran principal
 				Intent i = new Intent(SubjectActivity.this, MainActivity.class);
 				startActivity(i);
 			}
@@ -120,72 +120,15 @@ public class SubjectActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				//Recupere le nom et le coef
-				EditText title_tf = (EditText) findViewById(R.id.subjectName);
-		        EditText coef_tf = (EditText) findViewById(R.id.subjectCoefficient);
-		        title_subject = title_tf.getText().toString();
-		        coef_subject = coef_tf.getText().toString();
-		        Context newContext = SubjectActivity.this;
-				MyAverageDbHelper mDbHelper = new MyAverageDbHelper(newContext);
-				
-				if(MainActivity.isNumeric(coef_subject))
-				{
-					//Update la matiere
-			        if (!subject.equals("NONE"))
-			        {
-			        	SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-			        	// New value for one column
-			        	ContentValues values = new ContentValues();
-						values.put(MyAverageDB.COLUMN_NAME_SUBJECT_ID, id_subject);
-						values.put(MyAverageDB.COLUMN_NAME_SUBJECT_NAME, title_subject);
-						values.put(MyAverageDB.COLUMN_NAME_SUBJECT_COEF, coef_subject);
-
-			        	// Which row to update, based on the ID
-			        	String selection = MyAverageDB.COLUMN_NAME_SUBJECT_ID + " LIKE ?";
-			        	String[] selectionArgs = { String.valueOf(id_subject) };
-
-			        	int count = db.update(
-			        			MyAverageDB.TABLE_SUBJECTS,
-			        	    values,
-			        	    selection,
-			        	    selectionArgs);
-			        }
-			        // Inserer la matère
-			        else 
-			        {
-			        
-						SQLiteDatabase db = mDbHelper.getWritableDatabase();
-						
-						// Create a new map of values, where column names are the keys
-						ContentValues values = new ContentValues();
-						values.put(MyAverageDB.COLUMN_NAME_SUBJECT_ID, id_subject);
-						values.put(MyAverageDB.COLUMN_NAME_SUBJECT_NAME, title_subject);
-						values.put(MyAverageDB.COLUMN_NAME_SUBJECT_COEF, coef_subject);
-
-						// Insert the new row, returning the primary key value of the new row
-						long newRowId;
-						newRowId = db.insert(
-								MyAverageDB.TABLE_SUBJECTS,
-								MyAverageDB.COLUMN_NAME_SUBJECT_NAME,
-						         values);
-			        }
-					
-
-					// Renvoie à l'ecran principal
-					Intent i = new Intent(SubjectActivity.this, MainActivity.class);
-					startActivity(i);
-				}
-				else
-					Toast.makeText(getApplicationContext(), "Un coefficient est forcement numérique !", Toast.LENGTH_LONG).show();
-			}
-
+            if(tryToSave()) goHome();
+            }
 		});
+
 		TextView title = (TextView) findViewById(R.id.textViewTitle_activity2);
 		title.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Renvoie à l'ecran principal
+				// Renvoie ï¿½ l'ecran principal
 				Intent i = new Intent(SubjectActivity.this, MainActivity.class);
 				startActivity(i);
 			}
@@ -196,7 +139,7 @@ public class SubjectActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_subject, menu);
         return true;
     }
 
@@ -213,5 +156,65 @@ public class SubjectActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+	
+	    public boolean tryToSave() {
+        //Recupere le nom et le coef
+        EditText title_tf = (EditText) findViewById(R.id.subjectName);
+        EditText coef_tf = (EditText) findViewById(R.id.subjectCoefficient);
+        title_subject = title_tf.getText().toString();
+        coef_subject = coef_tf.getText().toString();
+        Context newContext = SubjectActivity.this;
+        MyAverageDbHelper mDbHelper = new MyAverageDbHelper(newContext);
+
+        if (MainActivity.isNumeric(coef_subject)) {
+            //Update la matiere
+            if (!subject.equals("NONE")) {
+                SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+                // New value for one column
+                ContentValues values = new ContentValues();
+                values.put(MyAverageDB.COLUMN_NAME_SUBJECT_ID, id_subject);
+                values.put(MyAverageDB.COLUMN_NAME_SUBJECT_NAME, title_subject);
+                values.put(MyAverageDB.COLUMN_NAME_SUBJECT_COEF, coef_subject);
+
+                // Which row to update, based on the ID
+                String selection = MyAverageDB.COLUMN_NAME_SUBJECT_ID + " LIKE ?";
+                String[] selectionArgs = {String.valueOf(id_subject)};
+
+                int count = db.update(
+                        MyAverageDB.TABLE_SUBJECTS,
+                        values,
+                        selection,
+                        selectionArgs);
+            }
+            // Inserer la matiere
+            else {
+
+                SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+                // Create a new map of values, where column names are the keys
+                ContentValues values = new ContentValues();
+                values.put(MyAverageDB.COLUMN_NAME_SUBJECT_ID, id_subject);
+                values.put(MyAverageDB.COLUMN_NAME_SUBJECT_NAME, title_subject);
+                values.put(MyAverageDB.COLUMN_NAME_SUBJECT_COEF, coef_subject);
+
+                // Insert the new row, returning the primary key value of the new row
+                long newRowId;
+                newRowId = db.insert(
+                        MyAverageDB.TABLE_SUBJECTS,
+                        MyAverageDB.COLUMN_NAME_SUBJECT_NAME,
+                        values);
+            }
+            return true;
+        } else {
+            Toast.makeText(getApplicationContext(), "Un coefficient est forcement num?rique !", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
+    public void goHome(){
+        Intent i = new Intent(SubjectActivity.this, MainActivity.class);
+        startActivity(i);
     }
 }
