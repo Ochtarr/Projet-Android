@@ -30,7 +30,7 @@ public class Promotion{
             double sumCoeff = 0.0;
             for (Subject subject : listSubjects){
             	if(subject.getAverage() > 1.f)
-            		sum += subject.getAverage();
+            		sum += subject.getAverage() * subject.getCoefficient();
                 sumCoeff += subject.getCoefficient();
             }
             if(sumCoeff != 0)
