@@ -122,7 +122,7 @@ public class MainActivity extends Activity {
 			globalMark.setText(new String("" + globalAverage));
 		}
 		ArrayList<String> listSubjects = new ArrayList<String>();
-		for (int i = 0; i < myPromo.getListSubjects().size(); i++)
+		for (int i = myPromo.getListSubjects().size()-1; i >= 0; i--)
 			listSubjects.add(myPromo.getListSubjects().get(i).getName());
 		ListView lv = (ListView) findViewById(R.id.listViewSubject);
 		ArrayAdapter adapter=new ArrayAdapter<String>(this,
@@ -136,6 +136,7 @@ public class MainActivity extends Activity {
 				in.putExtra(ID_SUBJECT,new String(""+myPromo.getListSubjects().get(nb_subjects-i-1).getId()));
 				in.putExtra("TITLE_SUBJECT",myPromo.getListSubjects().get(nb_subjects-i-1).getName());
 				in.putExtra("COEF_SUBJECT",new String(""+myPromo.getListSubjects().get(nb_subjects-i-1).getCoefficient()));
+				in.putExtra("AVERAGE_SUBJECT",new String(""+myPromo.getListSubjects().get(nb_subjects-i-1).getAverage()));
 				startActivity(in);
 	        }
 	    });
@@ -155,7 +156,7 @@ public class MainActivity extends Activity {
 				if(myPromo.getListSubjects().isEmpty())
 					i.putExtra(ID_SUBJECT,new String(""+1));
 				else
-					i.putExtra(ID_SUBJECT,new String(""+(myPromo.getListSubjects().get(nb_subjects-1).getId()+3)));
+					i.putExtra(ID_SUBJECT,new String(""+(getMaxId(myPromo.getListSubjects())+1)));
 				startActivity(i);
 				
 			}
@@ -194,5 +195,14 @@ public class MainActivity extends Activity {
         return false;  
       }  
       return true;  
+    }
+    
+    public int getMaxId(ArrayList<Subject> array)
+    {
+    	int max = 0;
+    	for(int i = 0; i < array.size() ; i++)
+    		if(max < array.get(i).getId())
+    			max = array.get(i).getId();
+    	return max;
     }
 }
