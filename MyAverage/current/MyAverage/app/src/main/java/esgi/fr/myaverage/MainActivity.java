@@ -157,7 +157,7 @@ public class MainActivity extends Activity {
 				Intent i = new Intent(MainActivity.this,SubjectActivity.class);
 				i.putExtra(SUBJECT, "NONE");
 				if(myPromo.getListSubjects().isEmpty())
-					i.putExtra(ID_SUBJECT,new String(""+1));
+					i.putExtra(ID_SUBJECT,new String("1"));
 				else
 					i.putExtra(ID_SUBJECT,new String(""+(getMaxId(myPromo.getListSubjects())+1)));
 				startActivity(i);

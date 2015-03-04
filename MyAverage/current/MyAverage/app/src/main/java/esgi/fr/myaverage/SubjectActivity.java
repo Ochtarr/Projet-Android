@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,8 +52,7 @@ public class SubjectActivity extends Activity {
        
 		
 		TextView average=(TextView) findViewById(R.id.textViewSubjectAverage);
-		if(Double.parseDouble(intent.getStringExtra("AVERAGE_SUBJECT"))>1.f)
-			average.setText(intent.getStringExtra("AVERAGE_SUBJECT"));
+		average.setText(intent.getStringExtra("AVERAGE_SUBJECT"));
 		// Si l'utilisateur a cliqu� sur une matiere on charge les notes
 		if (!subject.equals("NONE")) {
 			EditText title_tf = (EditText) findViewById(R.id.subjectName);
@@ -213,7 +211,6 @@ public class SubjectActivity extends Activity {
 				null, // don't filter by row groups
 				sortOrderMarks // The sort order
 				);
-		Log.i("NOTES",new String(""+cursorMarks.getCount()));
 		cursorMarks.moveToFirst();
 		while (!cursorMarks.isAfterLast()) {
 			int markId = cursorMarks.getInt(cursorMarks

@@ -66,6 +66,6 @@ public class Subject {
             }
             return sum / sumCoeff;
         }
-        else return -1.0;
+        else return 0.0;
     }
 }
