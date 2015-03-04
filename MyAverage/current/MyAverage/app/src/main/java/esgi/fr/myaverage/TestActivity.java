@@ -24,6 +24,7 @@ public class TestActivity extends Activity {
 
 	private int id_subject;
 	private int id_mark;
+	private String title_subject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,10 @@ public class TestActivity extends Activity {
 		Intent intent = getIntent();
 		id_mark = Integer.parseInt(intent.getStringExtra("ID_MARK"));
 		id_subject = Integer.parseInt(intent.getStringExtra("ID_SUBJECT"));
+		title_subject = intent.getStringExtra("TITLE_SUBJECT");
+		TextView subjectName = (TextView) findViewById(R.id.textViewSubjectName);
+		subjectName.setText(title_subject);
+		Log.i("SUBJECT",title_subject);
 		EditText myMark = (EditText) findViewById(R.id.TestMark);
 		EditText myMarkCoef = (EditText) findViewById(R.id.coefficient);
 		myMark.setText(intent.getStringExtra("VALUE_MARK"));

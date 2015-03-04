@@ -12,16 +12,19 @@ public class MarksListener implements OnClickListener {
 	
 	private int subject_id;
 	private ArrayList<Test> mySubject;
+	private String title_subject;
 	
-	public MarksListener(int _id, ArrayList<Test> _mySubject)
+	public MarksListener(int _id, String _title_subject, ArrayList<Test> _mySubject)
 	{
 		subject_id = _id;
+		title_subject = _title_subject;
 		mySubject = _mySubject;
 	}
 	@Override
 	public void onClick(View v) {
 		Intent i = new Intent(v.getContext(), TestActivity.class);
 		i.putExtra("ID_SUBJECT",new String(""+subject_id));
+		i.putExtra("TITLE_SUBJECT", title_subject);
 		switch (v.getId()) 
 		{
 			case R.id.button_mark1:

@@ -40,7 +40,7 @@ public class SubjectActivity extends Activity {
 		Intent intent = getIntent();
 		subject = intent.getStringExtra(SUBJECT);
 		id_subject = Integer.parseInt(intent.getStringExtra(ID_SUBJECT));
-		
+		 title_subject = intent.getStringExtra("TITLE_SUBJECT");
 		getMySubject();
 		
 		generateMarkButtons();
@@ -53,11 +53,13 @@ public class SubjectActivity extends Activity {
        
 		
 		TextView average=(TextView) findViewById(R.id.textViewSubjectAverage);
-        average.setText(intent.getStringExtra("AVERAGE_SUBJECT"));
+		if(Double.parseDouble(intent.getStringExtra("AVERAGE_SUBJECT"))>1.f)
+			average.setText(intent.getStringExtra("AVERAGE_SUBJECT"));
 		// Si l'utilisateur a cliqu� sur une matiere on charge les notes
 		if (!subject.equals("NONE")) {
 			EditText title_tf = (EditText) findViewById(R.id.subjectName);
 	        EditText coef_tf = (EditText) findViewById(R.id.subjectCoefficient);
+	       
 	        title_tf.setText(intent.getStringExtra("TITLE_SUBJECT"));
 	        coef_tf.setText(intent.getStringExtra("COEF_SUBJECT"));
 		}
@@ -246,7 +248,7 @@ public class SubjectActivity extends Activity {
 		b14 = (Button) findViewById(R.id.button_mark14);
 		b15 = (Button) findViewById(R.id.button_mark15);
 		b16 = (Button) findViewById(R.id.button_mark16);
-		MarksListener ml = new MarksListener(id_subject, mySubject);
+		MarksListener ml = new MarksListener(id_subject,title_subject, mySubject);
 		if(!mySubject.isEmpty())
 		{
 			for(int i = 0; i < mySubject.size() ; i++)
