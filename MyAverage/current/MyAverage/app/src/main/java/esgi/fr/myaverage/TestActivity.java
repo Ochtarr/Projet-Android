@@ -32,20 +32,6 @@ public class TestActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		
-		Intent intent = getIntent();
-		int id_mark = Integer.parseInt(intent.getStringExtra("ID_MARK"));
-		
-		TextView save = (TextView) findViewById(R.id.saveMark);
-		save.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
     }
 
 
