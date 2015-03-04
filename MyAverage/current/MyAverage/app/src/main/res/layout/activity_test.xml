@@ -1,122 +1,155 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff464646"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="esgi.fr.myaverage.TestActivity"
-    android:background="#ff464646">
+    tools:context=".TestActivity">
 
-    <TextView android:text="@string/app_title" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewTitle_activity3"
-        android:textStyle="bold"
-        android:textSize="@dimen/title_size"
-        android:textIsSelectable="false"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:singleLine="true"
-        android:textColor="#ffffffff" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TestMark"
-        android:text="0"
-        android:width="85dp"
-        android:height="85dp"
-        android:layout_below="@+id/textViewTitle_activity3"
-        android:layout_centerHorizontal="true"
-        android:autoText="false"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="30dp" />
+        android:orientation="vertical"
+        android:weightSum="1">
 
-    <TextView android:text="@string/SubjectName" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewSubjectName"
-        android:textSize="@dimen/subject_titles"
-        android:textIsSelectable="false"
-        android:textColor="#ffff4c53"
-        android:textStyle="bold"
-        android:layout_below="@+id/TestMark"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            tools:context="esgi.fr.myaverage.TestActivity"
+            android:background="#ff464646">-->
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/coefficient"
-        android:layout_below="@+id/textViewSubjectName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="Enter a Coefficient" />
+        <TextView
+            android:id="@+id/textViewTitle_activity3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:text="@string/app_title"
+            android:textColor="#ffffffff"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Details"
-        android:id="@+id/details_label"
-        android:textColor="#ffff4c53"
-        android:textStyle="bold"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textViewTitle_activity3"
-        android:layout_alignStart="@+id/textViewTitle_activity3" />
+        <EditText
+            android:id="@+id/TestMark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewTitle_activity3"
+            android:layout_centerHorizontal="true"
+            android:width="85dp"
+            android:height="85dp"
+            android:autoText="false"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="30dp"
+            android:layout_marginTop="25dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/details"
-        android:layout_alignRight="@+id/coefficient"
-        android:layout_alignEnd="@+id/coefficient"
-        android:background="#ffffd3cc"
-        android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/details_label"
-        android:layout_toEndOf="@+id/TestMark"
-        android:layout_alignLeft="@+id/TestMark"
-        android:layout_alignStart="@+id/TestMark"
-        android:text="What was your test about !?"
-        android:gravity="top"
-        android:padding="7dp" />
+        <TextView
+            android:id="@+id/textViewSubjectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TestMark"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/SubjectName"
+            android:textColor="#ffff4c53"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/subject_titles"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/superAndroid"
-        android:src="@drawable/superandroid"
-        android:layout_alignBottom="@+id/details"
-        android:layout_below="@+id/details_label"
-        android:layout_toStartOf="@+id/details"
-        android:layout_toLeftOf="@+id/details" />
+        <EditText
+            android:id="@+id/coefficient"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textViewSubjectName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter a Coefficient" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="save"
-        android:id="@+id/saveMark"
-        android:textColor="#ffff4c53"
-        android:textStyle="bold"
-        android:clickable="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="358dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="0.30">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="delete"
-        android:id="@+id/deleteMark"
-        android:textColor="#ffff4c53"
-        android:textStyle="bold"
-        android:clickable="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:id="@+id/details_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffff4c53"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/details"
+                android:layout_toStartOf="@+id/details"
+                android:layout_marginRight="5dp" />
 
-</RelativeLayout>
+            <EditText
+                android:id="@+id/details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffd3cc"
+                android:ems="10"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:padding="7dp"
+                android:text="What was your test about !?"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@+id/saveMark" />
+
+            <ImageView
+                android:id="@+id/superAndroid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/superandroid"
+                android:layout_toStartOf="@+id/details_label"
+                android:layout_alignRight="@+id/details_label"
+                android:layout_alignEnd="@+id/details_label" />
+
+            <TextView
+                android:id="@+id/saveMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="save"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff8acb82"
+                android:textStyle="bold"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="25dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/deleteMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="delete"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffff4c53"
+                android:textStyle="bold"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="25dp"
+                android:textSize="20dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
+
+    <!--</RelativeLayout>-->
