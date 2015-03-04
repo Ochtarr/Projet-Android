@@ -2,10 +2,8 @@ package esgi.fr.myaverage.models;
 
 import java.util.ArrayList;
 
-/**
- * Matiere
- */
 public class Subject {
+	private int id;
     private String name;
     private ArrayList<Test> listTests;
     private double coefficient;
@@ -15,12 +13,30 @@ public class Subject {
         coefficient = 1.0;
     }
 
-    public Subject(String _name, double _coefficient){
+    public Subject(int _id, String _name, double _coefficient){
+    	id = _id;
         name = _name;
         coefficient = _coefficient;
+        listTests = new ArrayList<Test>();
     }
 
-    public void setMark(double mark){
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setMark(double mark){
         listTests.add(new Test(mark));
     }
 
