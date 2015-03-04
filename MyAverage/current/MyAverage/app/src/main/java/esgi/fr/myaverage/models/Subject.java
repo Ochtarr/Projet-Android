@@ -64,7 +64,10 @@ public class Subject {
                 sum += (test.getMark() * test.getCoefficient());
                 sumCoeff += test.getCoefficient();
             }
-            return sum / sumCoeff;
+            if(sumCoeff != 0)
+            	return sum / sumCoeff;
+            else
+            	return 0.0;
         }
         else return 0.0;
     }
