@@ -31,6 +31,12 @@ public class SubjectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_subject);
+		 
+		Intent intent = getIntent();
+		subject = intent.getStringExtra(SUBJECT);
+		id_subject = Integer.parseInt(intent.getStringExtra(ID_SUBJECT));
+		
+		
 		
 		Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
 		b1 = (Button) findViewById(R.id.button_mark1);
@@ -49,7 +55,7 @@ public class SubjectActivity extends Activity {
 		b14 = (Button) findViewById(R.id.button_mark14);
 		b15 = (Button) findViewById(R.id.button_mark15);
 		b16 = (Button) findViewById(R.id.button_mark16);
-		MarksListener ml = new MarksListener();
+		MarksListener ml = new MarksListener(id_subject);
 		
 		b1.setOnClickListener(ml);
 		b2.setOnClickListener(ml);
@@ -73,10 +79,7 @@ public class SubjectActivity extends Activity {
         tv.setTypeface(font);
         
         
-        
-		Intent intent = getIntent();
-		subject = intent.getStringExtra(SUBJECT);
-		id_subject = Integer.parseInt(intent.getStringExtra(ID_SUBJECT));
+       
 		
 		TextView average=(TextView) findViewById(R.id.textViewSubjectAverage);
         average.setText(intent.getStringExtra("AVERAGE_SUBJECT"));

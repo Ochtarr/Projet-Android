@@ -5,10 +5,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class MarksListener implements OnClickListener {
-
+	
+	private int subject_id;
+	
+	public MarksListener(int _id)
+	{
+		subject_id = _id;
+	}
 	@Override
 	public void onClick(View v) {
 		Intent i = new Intent(v.getContext(), TestActivity.class);
+		i.putExtra("ID_SUBJECT",new String(""+subject_id));
 		switch (v.getId()) 
 		{
 			case R.id.button_mark1:
