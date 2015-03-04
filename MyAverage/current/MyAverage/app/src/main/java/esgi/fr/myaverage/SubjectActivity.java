@@ -1,12 +1,16 @@
 package esgi.fr.myaverage;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import esgi.fr.myaverage.db.MyAverageContract.MyAverageDB;
 import esgi.fr.myaverage.db.MyAverageDbHelper;
+import esgi.fr.myaverage.models.Test;
 
 
 public class SubjectActivity extends Activity {
@@ -25,8 +30,8 @@ public class SubjectActivity extends Activity {
 	 private int id_subject;
 	 private String title_subject;
 	 private String coef_subject;
-	 private Double my_moy;
 	 private String subject;
+	 private ArrayList<Test> mySubject = new ArrayList<Test>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,43 +41,9 @@ public class SubjectActivity extends Activity {
 		subject = intent.getStringExtra(SUBJECT);
 		id_subject = Integer.parseInt(intent.getStringExtra(ID_SUBJECT));
 		
+		getMySubject();
 		
-		
-		Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
-		b1 = (Button) findViewById(R.id.button_mark1);
-		b2 = (Button) findViewById(R.id.button_mark2);
-		b3 = (Button) findViewById(R.id.button_mark3);
-		b4 = (Button) findViewById(R.id.button_mark4);
-		b5 = (Button) findViewById(R.id.button_mark5);
-		b6 = (Button) findViewById(R.id.button_mark6);
-		b7 = (Button) findViewById(R.id.button_mark7);
-		b8 = (Button) findViewById(R.id.button_mark8);
-		b9 = (Button) findViewById(R.id.button_mark9);
-		b10 = (Button) findViewById(R.id.button_mark10);
-		b11 = (Button) findViewById(R.id.button_mark11);
-		b12 = (Button) findViewById(R.id.button_mark12);
-		b13 = (Button) findViewById(R.id.button_mark13);
-		b14 = (Button) findViewById(R.id.button_mark14);
-		b15 = (Button) findViewById(R.id.button_mark15);
-		b16 = (Button) findViewById(R.id.button_mark16);
-		MarksListener ml = new MarksListener(id_subject);
-		
-		b1.setOnClickListener(ml);
-		b2.setOnClickListener(ml);
-		b3.setOnClickListener(ml);
-		b4.setOnClickListener(ml);
-		b5.setOnClickListener(ml);
-		b6.setOnClickListener(ml);
-		b7.setOnClickListener(ml);
-		b8.setOnClickListener(ml);
-		b9 .setOnClickListener(ml);
-		b10.setOnClickListener(ml);
-		b11.setOnClickListener(ml);
-		b12.setOnClickListener(ml);
-		b13.setOnClickListener(ml);
-		b14.setOnClickListener(ml);
-		b15.setOnClickListener(ml);
-		b16.setOnClickListener(ml);
+		generateMarkButtons();
 		
 		Typeface font = Typeface.createFromAsset(getAssets(), "Lobster_1.4.otf");
         TextView tv=(TextView) findViewById(R.id.textViewTitle_activity2);
@@ -139,7 +110,7 @@ public class SubjectActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_subject, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -216,5 +187,140 @@ public class SubjectActivity extends Activity {
     public void goHome(){
         Intent i = new Intent(SubjectActivity.this, MainActivity.class);
         startActivity(i);
+    }
+    
+    private void getMySubject(){
+    	Context newContext = this;
+		MyAverageDbHelper mDbHelper = new MyAverageDbHelper(newContext);
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+		// Define a projection that specifies which columns from the database
+		// you will actually use after this query.
+		String[] projectionMarks = {
+				MyAverageDB.COLUMN_NAME_MARK_ID,
+				MyAverageDB.COLUMN_NAME_MARK_VALUE,
+				MyAverageDB.COLUMN_NAME_MARK_COEF,
+				MyAverageDB.COLUMN_NAME_MARK_SUBJECT_ID,
+		};
+		String sortOrderMarks = MyAverageDB.COLUMN_NAME_MARK_ID + " DESC";
+		Cursor cursorMarks = db.query(MyAverageDB.TABLE_MARKS, // The table
+				// to query
+				projectionMarks, // The columns to return
+				null, // The columns for the WHERE clause
+				null, // The values for the WHERE clause
+				null, // don't group the rows
+				null, // don't filter by row groups
+				sortOrderMarks // The sort order
+				);
+		Log.i("NOTES",new String(""+cursorMarks.getCount()));
+		cursorMarks.moveToFirst();
+		while (!cursorMarks.isAfterLast()) {
+			int markId = cursorMarks.getInt(cursorMarks
+					.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_MARK_ID));
+			String markValue = cursorMarks.getString(cursorMarks
+					.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_MARK_VALUE));
+			String markCoef = cursorMarks.getString(cursorMarks
+					.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_MARK_COEF));
+			String markSubjectID = cursorMarks.getString(cursorMarks
+					.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_SUBJECT_ID));
+			int markID = Integer.parseInt(markSubjectID);
+			if(Integer.parseInt(markSubjectID) == id_subject)
+				mySubject.add(new Test(markId, "", "", Double.parseDouble(markValue), Double.parseDouble(markCoef)));
+			cursorMarks.moveToNext();
+		}
+    }
+    private void generateMarkButtons(){
+    	Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
+		b1 = (Button) findViewById(R.id.button_mark1);
+		b2 = (Button) findViewById(R.id.button_mark2);
+		b3 = (Button) findViewById(R.id.button_mark3);
+		b4 = (Button) findViewById(R.id.button_mark4);
+		b5 = (Button) findViewById(R.id.button_mark5);
+		b6 = (Button) findViewById(R.id.button_mark6);
+		b7 = (Button) findViewById(R.id.button_mark7);
+		b8 = (Button) findViewById(R.id.button_mark8);
+		b9 = (Button) findViewById(R.id.button_mark9);
+		b10 = (Button) findViewById(R.id.button_mark10);
+		b11 = (Button) findViewById(R.id.button_mark11);
+		b12 = (Button) findViewById(R.id.button_mark12);
+		b13 = (Button) findViewById(R.id.button_mark13);
+		b14 = (Button) findViewById(R.id.button_mark14);
+		b15 = (Button) findViewById(R.id.button_mark15);
+		b16 = (Button) findViewById(R.id.button_mark16);
+		MarksListener ml = new MarksListener(id_subject, mySubject);
+		if(!mySubject.isEmpty())
+		{
+			for(int i = 0; i < mySubject.size() ; i++)
+			{
+				switch (mySubject.get(i).getId())
+				{
+				case 1 :
+					b1.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 2 :
+					b2.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 3 :
+					b3.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 4 :
+					b4.setText(new String(""+mySubject.get(i).getMark()));
+					break;	
+				case 5 :
+					b5.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 6 :
+					b6.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 7 :
+					b7.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 8 :
+					b8.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 9 :
+					b9.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 10 :
+					b10.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 11 :
+					b11.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 12 :
+					b12.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 13:
+					b13.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 14 :
+					b14.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 15 :
+					b15.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				case 16 :
+					b16.setText(new String(""+mySubject.get(i).getMark()));
+					break;
+				}
+				
+			}
+		}
+		
+		b1.setOnClickListener(ml);
+		b2.setOnClickListener(ml);
+		b3.setOnClickListener(ml);
+		b4.setOnClickListener(ml);
+		b5.setOnClickListener(ml);
+		b6.setOnClickListener(ml);
+		b7.setOnClickListener(ml);
+		b8.setOnClickListener(ml);
+		b9 .setOnClickListener(ml);
+		b10.setOnClickListener(ml);
+		b11.setOnClickListener(ml);
+		b12.setOnClickListener(ml);
+		b13.setOnClickListener(ml);
+		b14.setOnClickListener(ml);
+		b15.setOnClickListener(ml);
+		b16.setOnClickListener(ml);
     }
 }

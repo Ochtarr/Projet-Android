@@ -2,7 +2,8 @@ package esgi.fr.myaverage.models;
 
 import java.util.ArrayList;
 
-public class Promotion {
+
+public class Promotion{
     private String name;
     private ArrayList<Subject> listSubjects;
 
@@ -35,4 +36,5 @@ public class Promotion {
         }
         else return 0;
     }
+
 }

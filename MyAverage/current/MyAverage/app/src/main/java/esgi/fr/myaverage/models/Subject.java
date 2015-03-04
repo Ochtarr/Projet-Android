@@ -20,7 +20,15 @@ public class Subject {
         listTests = new ArrayList<Test>();
     }
 
-    public String getName() {
+    public ArrayList<Test> getListTests() {
+		return listTests;
+	}
+
+	public void setListTests(ArrayList<Test> listTests) {
+		this.listTests = listTests;
+	}
+
+	public String getName() {
 		return name;
 	}
 
@@ -40,8 +48,8 @@ public class Subject {
         listTests.add(new Test(mark));
     }
 
-    public void setTest(String name, String details, double mark, double coefficient){
-        listTests.add(new Test(name, details, mark, coefficient));
+    public void setTest(int _id, String name, String details, double mark, double coefficient){
+        listTests.add(new Test(_id, name, details, mark, coefficient));
     }
 
     public double getCoefficient(){

@@ -94,21 +94,24 @@ public class MainActivity extends Activity {
 					);
 			cursorMarks.moveToFirst();
 			while (!cursorMarks.isAfterLast()) {
+				int markId = cursorMarks
+						.getInt(cursorMarks
+								.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_MARK_ID));
 				String markValue = cursorMarks
-						.getString(cursorSubjects
+						.getString(cursorMarks
 								.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_MARK_VALUE));
 				String markCoef = cursorMarks
-						.getString(cursorSubjects
+						.getString(cursorMarks
 								.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_MARK_COEF));
 				String markSubjectID = cursorMarks
-						.getString(cursorSubjects
+						.getString(cursorMarks
 								.getColumnIndexOrThrow(MyAverageDB.COLUMN_NAME_SUBJECT_ID));
 				int markID = Integer.parseInt(markSubjectID);
 				for (int i = 0; i < myPromo.getListSubjects().size(); i++) {
 					if (markID == myPromo.getListSubjects().get(i).getId()) {
 						myPromo.getListSubjects()
 								.get(i)
-								.setTest("", "", Double.parseDouble(markValue),
+								.setTest(markId, "", "", Double.parseDouble(markValue),
 										Double.parseDouble(markCoef));
 					}
 				}

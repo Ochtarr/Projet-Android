@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +46,10 @@ public class TestActivity extends Activity {
 		Intent intent = getIntent();
 		id_mark = Integer.parseInt(intent.getStringExtra("ID_MARK"));
 		id_subject = Integer.parseInt(intent.getStringExtra("ID_SUBJECT"));
-		
+		EditText myMark = (EditText) findViewById(R.id.TestMark);
+		EditText myMarkCoef = (EditText) findViewById(R.id.coefficient);
+		myMark.setText(intent.getStringExtra("VALUE_MARK"));
+		myMarkCoef.setText(intent.getStringExtra("COEF_MARK"));
 		
 		TextView save = (TextView) findViewById(R.id.saveMark);
 		save.setOnClickListener(new OnClickListener(){
@@ -55,7 +59,9 @@ public class TestActivity extends Activity {
 				EditText myMark = (EditText) findViewById(R.id.TestMark);
 				EditText myMarkCoef = (EditText) findViewById(R.id.coefficient);
 				String mark = myMark.getText().toString();
+				Log.i("MARK",mark);
 				String coef = myMarkCoef.getText().toString();
+				Log.i("COEF",coef);
 				if(MainActivity.isNumeric(coef))
 				{
 					Context newContext = TestActivity.this;
@@ -101,7 +107,7 @@ public class TestActivity extends Activity {
 			
 		});
 		
-		TextView delete = (TextView) findViewById(R.id.saveMark);
+		TextView delete = (TextView) findViewById(R.id.deleteMark);
 		delete.setOnClickListener(new OnClickListener(){
 
 			@Override

@@ -1,6 +1,7 @@
 package esgi.fr.myaverage.models;
 
 public class Test {
+	private int id;
     private String name;
     private String details;
     private double mark;
@@ -13,14 +14,23 @@ public class Test {
         coefficient = 1.0;
     }
 
-    public Test(String _name, String _details, double _mark, double _coefficient){
+    public Test(int _id, String _name, String _details, double _mark, double _coefficient){
+    	id = _id;
         name = _name;
         details = _details;
         mark = _mark;
         coefficient = _coefficient;
     }
 
-    public void setName(String _name){
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String _name){
         name = _name;
     }
 
